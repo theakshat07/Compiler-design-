@@ -1,0 +1,20 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+
+[a-z]  { 
+            // Convert lowercase character to uppercase
+            char upper = yytext[0] - 'a' + 'A'; 
+            printf("%c", upper); 
+        }
+
+.|\n    { printf("%s", yytext); }  // For other characters, just print as is
+
+%%
+
+int main() {
+    yylex();  // Start Lex analysis
+    return 0;
+}
